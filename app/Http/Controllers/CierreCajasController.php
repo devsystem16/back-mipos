@@ -18,7 +18,7 @@ class CierreCajasController extends Controller
     }
 
     public function findAll (){
-        $data =  DB::select("if (EXISTS (SELECT 1 FROM mipos.cierre_cajas where date_open = curdate()))
+        $data =  DB::select("if (EXISTS (SELECT 1 FROM cierre_cajas where date_open = curdate()))
         then  
                 SELECT * FROM mipos.cierre_cajas where date_open = curdate();
          
