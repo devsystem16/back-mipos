@@ -18,13 +18,7 @@ class CierreCajasController extends Controller
     }
 
     public function findAll (){
-        $data =  DB::select("if (EXISTS (SELECT 1 FROM cierre_cajas where date_open = curdate()))
-        then  
-                SELECT * FROM mipos.cierre_cajas where date_open = curdate();
-         
-        else   
-                SELECT  1  id, curdate() date_open,DATE_FORMAT(NOW(), \"%H:%i\" )  hour_open,  0 value_previous_close,   null value_open, '' observation;
-        end if;");// podia hacer un sp, de hecho lo hice, pero para rapidez de la revision le deje la consulta.
+        $data =  DB::select("call getPeriodo()");
 
 
         return [
